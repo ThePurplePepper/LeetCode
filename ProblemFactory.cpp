@@ -14,4 +14,6 @@ unique_ptr<Problem> ProblemFactory::createProblem(unsigned int ID) const {
 
 void registerAllProblems(ProblemFactory &factory) {
     factory.registerProblem(1, []() { return make_unique<TwoSum>(); });
+    factory.registerProblem(9, []() { return make_unique<PalindromeNumber>(); });
+    factory.registerProblem(13, []() { return make_unique<RomanToInteger>(); });
 }
