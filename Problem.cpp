@@ -10,15 +10,32 @@ using namespace std;
 Problem::Problem(unsigned int ID, const string &name, const string &desc, Difficulty difficulty) :
     ID(ID), problemName(name), description(desc), difficulty(difficulty) {}
 Problem::~Problem() = default;
-Difficulty Problem::getDifficulty() {
-    return difficulty;
+
+string Problem::getDifficulty() {
+    switch (difficulty) {
+        case Difficulty::Easy:
+            return "Easy";
+        case Difficulty::Medium:
+            return "Medium";
+        case Difficulty::Hard:
+            return "Hard";
+        default:
+            return "Null";
+    }
 }
+
 string Problem::getProblemName() {
     return problemName;
 }
+
 unsigned int Problem::getID() {
     return ID;
 }
+
+string Problem::getDescription() {
+    return description;
+}
+
 
 
 TwoSum::TwoSum() : Problem(1, "TwoSum",

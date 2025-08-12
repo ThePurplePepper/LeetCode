@@ -19,7 +19,8 @@ public:
     virtual ~Problem();
     unsigned int getID();
     string getProblemName();
-    Difficulty getDifficulty();
+    string getDifficulty();
+    string getDescription();
 };
 
 class TwoSum : public Problem {
