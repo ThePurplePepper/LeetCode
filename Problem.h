@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -42,4 +43,10 @@ public:
     int Solution(const string& s);
     int anotherSolution(const string& s);
     int bestSolution(const string& s);
+};
+
+class LongestCommonPrefix : public Problem {
+public:
+    LongestCommonPrefix();
+    string Solution(vector<string>& strs);
 };

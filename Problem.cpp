@@ -227,4 +227,34 @@ int RomanToInteger::bestSolution(const string& s) {
     return result;
 }
 
+LongestCommonPrefix::LongestCommonPrefix() : Problem(14, "LongestCommonPrefix",
+"Write a function to find the longest common prefix string amongst an array of strings.\n"
+"If there is no common prefix, return an empty string\n", Difficulty::Easy) {}
+
+string LongestCommonPrefix::Solution(vector<string> &strs) {
+    size_t shortestStringLength = 0;
+    string result;
+    if (!strs.empty()) {
+        shortestStringLength = strs[0].length();
+    } else {
+        return result;
+    }
+    for (size_t i = 1; i < strs.size(); i++) {
+        if (strs[i].length() < shortestStringLength) {
+            shortestStringLength = strs[i].length();
+        }
+    }
+    const string& curr = strs[0];
+
+    for (size_t i = 0; i < shortestStringLength; i++) {
+        char curr_letter = curr[i];
+        for (const string& str : strs) {
+            if (str[i] != curr_letter) {
+                return result;
+            }
+        }
+        result += curr_letter;
+    }
+    return result;
+}
 
