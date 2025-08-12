@@ -40,5 +40,5 @@ public:
     RomanToInteger();
     int Solution(const string& s);
     int anotherSolution(const string& s);
-    int RomanToInteger::bestSolution(const string& s)
+    int bestSolution(const string& s);
 };

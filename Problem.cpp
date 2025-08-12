@@ -77,7 +77,7 @@ bool PalindromeNumber::Solution(int x) {
         digits.push_back(x % 10);
         x = x / 10;
     }
-    for (int i = 0; i < digits.size() / 2; i++) {
+    for (int i = 0; i < int(digits.size() / 2); i++) {
         if (digits[i] != digits[digits.size() - 1 - i]) {
             return false;
         }
@@ -90,7 +90,7 @@ RomanToInteger::RomanToInteger() : Problem(13, "RomanToInteger",
 
 int RomanToInteger::Solution(const string& s) {
     int result = 0;
-    int i = 0;
+    size_t i = 0;
     while (i+1 <= s.length()) {
         if (s[i] == 'I') {
             if (s[i+1] == 'V') {
@@ -138,7 +138,7 @@ int RomanToInteger::Solution(const string& s) {
 
 int RomanToInteger::anotherSolution(const string& s) {
     int result = 0;
-    for (int i = 0; i < s.length(); i++) {
+    for (size_t i = 0; i < s.length(); i++) {
         switch (s[i]) {
             case 'I':
                 result += 1;
@@ -182,7 +182,7 @@ int RomanToInteger::anotherSolution(const string& s) {
             case 'M':
                 result += 1000;
             break;
-            case default:
+            default:
                 throw std::invalid_argument("Invalid argument");
         }
     }
@@ -199,7 +199,7 @@ int RomanToInteger::bestSolution(const string& s) {
     pairs['D'] = 500;
     pairs['M'] = 1000;
     int result = 0;
-    for (int i = 0; i < s.length(); i++) {
+    for (size_t i = 0; i < s.length(); i++) {
         if (i+1 < s.length() && pairs[s[i]] < pairs[s[i+1]]) {
             result = result + pairs[s[i+1]] - pairs[s[i]];
             i++;
