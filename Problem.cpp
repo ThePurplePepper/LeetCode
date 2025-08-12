@@ -3,6 +3,7 @@
 
 #include <cstring>
 #include <map>
+#include <stack>
 #include <vector>
 
 using namespace std;
@@ -258,3 +259,23 @@ string LongestCommonPrefix::Solution(vector<string> &strs) {
     return result;
 }
 
+ValidParentheses::ValidParentheses() : Problem(20, "ValidParentheses",
+"Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.\n", Difficulty::Easy) { }
+
+bool ValidParentheses::Solution(const string &s) {
+    std::stack<char> stack;
+    for (size_t i = 0; i < s.length(); i++) {
+        if (s[i] == '(' || s[i] == '[' || s[i] == '{') {
+            stack.push(s[i]);
+        } else if (!stack.empty() && stack.top() == '(' && s[i] == ')') {
+            stack.pop();
+        } else if (!stack.empty() && stack.top() == '[' && s[i] == ']') {
+            stack.pop();
+        } else if (!stack.empty() && stack.top() == '{' && s[i] == '}') {
+            stack.pop();
+        } else {
+            return false;
+        }
+    }
+    return stack.empty();
+}

@@ -50,3 +50,9 @@ public:
     LongestCommonPrefix();
     string Solution(vector<string>& strs);
 };
+
+class ValidParentheses : public Problem {
+public:
+    ValidParentheses();
+    bool Solution(const string& s);
+};
