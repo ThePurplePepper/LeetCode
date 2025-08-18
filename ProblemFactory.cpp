@@ -16,4 +16,6 @@ void registerAllProblems(ProblemFactory &factory) {
     factory.registerProblem(1, []() { return make_unique<TwoSum>(); });
     factory.registerProblem(9, []() { return make_unique<PalindromeNumber>(); });
     factory.registerProblem(13, []() { return make_unique<RomanToInteger>(); });
+    factory.registerProblem(14, []() { return make_unique<LongestCommonPrefix>(); });
+    factory.registerProblem(20, []() { return make_unique<ValidParentheses>(); });
 }
