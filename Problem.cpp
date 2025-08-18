@@ -380,6 +380,44 @@ int LengthOfLastWord::Solution(string s) {
     return counter;
 }
 
+PlusOne::PlusOne() : Problem(66,"PlusOne", "You are given a large integer represented as an integer array digits, where each digits[i] is the ith digit of the integer.\n"
+    "The digits are ordered from most significant to least significant in left-to-right order. The large integer does not contain any leading 0's.\n"
+"Increment the large integer by one and return the resulting array of digits.\n", Difficulty::Easy){ }
+
+vector<int> PlusOne::Solution(vector<int> &digits) {
+    int i = digits.size() - 1;
+    while (i >= 0 && digits[i] == 9) {
+        i--;
+    }
+    if (i >= 0) {
+        digits[i++]++;
+        while (i < digits.size()) {
+            digits[i] = 0;
+            i++;
+        }
+        return digits;
+    }
+    for (int k = 0; k < digits.size(); k++) {
+        digits[k] = 0;
+    }
+    digits.insert(digits.begin(), 1);
+    digits.push_back(0);
+    return digits;
+}
+
+vector<int> PlusOne::anotherSolution(vector<int> &digits) {
+    for (int i = digits.size() - 1; i >= 0; i--) {
+        if (digits[i] < 9) {
+            digits[i]++;
+            return digits;
+        }
+        digits[i] = 0;
+    }
+    digits.insert(digits.begin(), 1);
+    return digits;
+}
+
+
 
 
 

@@ -22,4 +22,5 @@ void registerAllProblems(ProblemFactory &factory) {
     factory.registerProblem(26, []() { return make_unique<RemoveDuplicatesFromSortedArray>(); });
     factory.registerProblem(27, []() { return make_unique<RemoveElement>(); });
     factory.registerProblem(58, []() { return make_unique<LengthOfLastWord>(); });
+    factory.registerProblem(66, []() { return make_unique<PlusOne>(); });
 }

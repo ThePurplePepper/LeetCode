@@ -88,3 +88,10 @@ public:
     LengthOfLastWord();
     int Solution(string s);
 };
+
+class PlusOne : public Problem {
+public:
+    PlusOne();
+    vector<int> Solution(vector<int>& digits);
+    vector<int> anotherSolution(vector<int>& digits);
+};
