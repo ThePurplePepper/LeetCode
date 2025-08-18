@@ -2,6 +2,7 @@
 #include "Problem.h"
 
 #include <cstring>
+#include <list>
 #include <map>
 #include <stack>
 #include <vector>
