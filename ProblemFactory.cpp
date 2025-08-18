@@ -18,4 +18,6 @@ void registerAllProblems(ProblemFactory &factory) {
     factory.registerProblem(13, []() { return make_unique<RomanToInteger>(); });
     factory.registerProblem(14, []() { return make_unique<LongestCommonPrefix>(); });
     factory.registerProblem(20, []() { return make_unique<ValidParentheses>(); });
+    factory.registerProblem(21, []() { return make_unique<MergeTwoSortedLists>(); });
+    factory.registerProblem(26, []() { return make_unique<RemoveDuplicatesFromSortedArray>(); });
 }
