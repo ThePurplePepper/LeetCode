@@ -46,7 +46,8 @@ int main() {
                 cout << "I didn't quite catch that..." << endl;
             }
         } while (exitStatus != "y" && exitStatus != "Y");
-
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
 
     return 0;
