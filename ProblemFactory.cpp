@@ -21,4 +21,5 @@ void registerAllProblems(ProblemFactory &factory) {
     factory.registerProblem(21, []() { return make_unique<MergeTwoSortedLists>(); });
     factory.registerProblem(26, []() { return make_unique<RemoveDuplicatesFromSortedArray>(); });
     factory.registerProblem(27, []() { return make_unique<RemoveElement>(); });
+    factory.registerProblem(58, []() { return make_unique<LengthOfLastWord>(); });
 }

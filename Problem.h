@@ -82,3 +82,9 @@ public:
     RemoveElement();
     int Solution(vector<int>& nums, int val);
 };
+
+class LengthOfLastWord : public Problem {
+public:
+    LengthOfLastWord();
+    int Solution(string s);
+};

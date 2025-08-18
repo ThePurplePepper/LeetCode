@@ -361,5 +361,25 @@ int RemoveElement::Solution(vector<int> &nums, int val) {
     return k;
 }
 
+LengthOfLastWord::LengthOfLastWord() :Problem(58, "LengthOfLastWord", "Given a string s consisting of words and spaces, return the length of the last word in the string.\n"
+"A word is a maximal substring consisting of non-space characters only.\n",Difficulty::Easy){ }
+
+int LengthOfLastWord::Solution(string s) {
+    int i = s.size()-1;
+    while (i >= 0 && s[i] == ' ') {
+        i--;
+    }
+    int counter = 0;
+    if (i < 0) {
+        return 0;
+    }
+    while (i >= 0 && s[i] != ' ') {
+        i--;
+        counter++;
+    }
+    return counter;
+}
+
+
 
 
