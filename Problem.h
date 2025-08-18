@@ -74,5 +74,11 @@ public:
 class RemoveDuplicatesFromSortedArray : public  Problem {
 public:
     RemoveDuplicatesFromSortedArray();
-    int Solution (vector<int>& nums);
+    int Solution(vector<int>& nums);
+};
+
+class RemoveElement : public Problem {
+public:
+    RemoveElement();
+    int Solution(vector<int>& nums, int val);
 };

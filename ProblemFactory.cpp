@@ -20,4 +20,5 @@ void registerAllProblems(ProblemFactory &factory) {
     factory.registerProblem(20, []() { return make_unique<ValidParentheses>(); });
     factory.registerProblem(21, []() { return make_unique<MergeTwoSortedLists>(); });
     factory.registerProblem(26, []() { return make_unique<RemoveDuplicatesFromSortedArray>(); });
+    factory.registerProblem(27, []() { return make_unique<RemoveElement>(); });
 }
