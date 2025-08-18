@@ -279,3 +279,61 @@ bool ValidParentheses::Solution(const string &s) {
     }
     return stack.empty();
 }
+
+MergeTwoSortedLists::MergeTwoSortedLists() : Problem(21, "MergeTwoSortedLists",
+"You are given the heads of two sorted linked lists list1 and list2.\n"
+"Merge the two lists into one sorted list. The list should be made by splicing together the nodes of the first two lists.\n"
+"Return the head of the merged linked list.\n", Difficulty::Easy) { }
+
+MergeTwoSortedLists::ListNode *MergeTwoSortedLists::Solution(ListNode *list1, ListNode *list2) {
+    ListNode dummy;                 //In order to use given nodes and not create new ones
+    ListNode* current = &dummy;
+    while (list1 && list2) {
+        if (list1->val < list2->val) {
+            current->next = list1;
+            list1 = list1->next;
+        } else {
+            current->next = list2;
+            list2 = list2->next;
+        }
+    }
+    if (list1) {
+        current->next = list1;
+    } else {
+        current->next = list2;
+    }
+    return dummy.next;
+}
+
+
+RemoveDuplicatesFromSortedArray::RemoveDuplicatesFromSortedArray() :Problem(26, "RemoveDuplicatesFromSortedArray",
+"Given an integer array nums sorted in non-decreasing order, remove the duplicates in-place such that each unique element appears only once.\n"
+"The relative order of the elements should be kept the same. Then return the number of unique elements in nums.\n"
+"Consider the number of unique elements of nums to be k, to get accepted, you need to do the following things:\n"
+"Change the array nums such that the first k elements of nums contain the unique elements in the order they were present in nums initially.\n"
+"The remaining elements of nums are not important as well as the size of nums.\n"
+"Return k.\n",Difficulty::Easy){ }
+
+int RemoveDuplicatesFromSortedArray::Solution(vector<int> &nums) {
+    if (nums.empty()) {
+        return 0;
+    }
+    int currentMax = nums[0];
+    int result = 1;
+    int current = 1;
+    while (current < nums.size()) {
+        if (nums[current] > currentMax) {
+            int temp = nums[result];
+            nums[result] = nums[current];
+            nums[current] = temp;
+            currentMax = nums[result];
+            result++;
+        }
+        else {
+            current++;
+        }
+    }
+    return result;
+}
+
+
