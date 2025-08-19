@@ -2,6 +2,7 @@
 #include "Problem.h"
 
 #include <cstring>
+#include <limits>
 #include <list>
 #include <map>
 #include <stack>
@@ -416,6 +417,71 @@ vector<int> PlusOne::anotherSolution(vector<int> &digits) {
     digits.insert(digits.begin(), 1);
     return digits;
 }
+
+AddBinary::AddBinary() : Problem(67,"AddBinary", "Given two binary strings a and b, return their sum as a binary string.\n"
+    Difficulty::Easy) { }
+
+string AddBinary::Solution(string a, string b) {
+    if (a.length() > b.length()) {
+        b = string(a.length() - b.length(), '0') + b;
+    } else if (b.length() > a.length()) {
+        a = string(b.length() - a.length(), '0') + a;
+    }
+    int carry = 0;
+    string sum = '';
+    for (int i = a.length() - 1; i >= 0; i--) {
+        int a_digit = a[i] - '0';
+        int b_digit = b[i] - '0';
+        int sum_digit = a_digit + b_digit + carry;
+        sum.push_back(sum_digit % 2 + '0');
+        carry = sum_digit / 2;
+    }
+    if (carry == 1) {
+        sum.push_back('1');
+    }
+    sum.reserve();
+    return sum;
+}
+
+SqrtX::SqrtX() : Problem(69, "Sqrt(x)", "Given a non-negative integer x, return the square root of x rounded down to the nearest integer.\n"
+                                        "The returned integer should be non-negative as well.", Difficulty::Easy) { }
+
+int SqrtX::Solution(int x) {
+    for (int i = 0; i < x / 2; i++) {
+        if (i*i == x) {
+            return i;
+        }
+        if (i*i > x) {
+            return i - 1;
+        }
+    }
+}
+
+int SqrtX::betterSolution(int x) {
+    if (x < 2) {
+        return x;
+    }
+    if (x < 4) {
+        return 1;
+    }
+    int top = x / 2;
+    int bottom = 0;
+    int current = (top + bottom) / 2;
+    while (top > bottom + 1) {
+        if (current * current > x) {
+            top = current;
+            current = (bottom + top) / 2;
+        } else if (current * current < x) {
+            bottom = current;
+            current = (bottom + top) / 2;
+        } else {
+            return current;
+        }
+    }
+    return current;
+}
+
+
 
 
 

@@ -95,3 +95,14 @@ public:
     vector<int> Solution(vector<int>& digits);
     vector<int> anotherSolution(vector<int>& digits);
 };
+
+class AddBinary : public Problem {
+    AddBinary();
+    string Solution(string a, string b);
+};
+
+class SqrtX : public Problem {
+    SqrtX();
+    int Solution(int x);
+    int betterSolution(int x);
+};
