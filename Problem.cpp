@@ -287,7 +287,7 @@ MergeTwoSortedLists::MergeTwoSortedLists() : Problem(21, "MergeTwoSortedLists",
 "Merge the two lists into one sorted list. The list should be made by splicing together the nodes of the first two lists.\n"
 "Return the head of the merged linked list.\n", Difficulty::Easy) { }
 
-MergeTwoSortedLists::ListNode *MergeTwoSortedLists::Solution(ListNode *list1, ListNode *list2) {
+ListNode* MergeTwoSortedLists::Solution(ListNode *list1, ListNode *list2) {
     ListNode dummy;                 //In order to use given nodes and not create new ones
     ListNode* current = &dummy;
     while (list1 && list2) {
@@ -481,7 +481,65 @@ int SqrtX::betterSolution(int x) {
     return current;
 }
 
+RemoveDuplicatesFromSortedList::RemoveDuplicatesFromSortedList() :Problem(83, "RemoveDuplicatesFromSortedList", "Given the head of a sorted linked list, delete all duplicates such that each element appears only once.\n"
+                                                                                                                "Return the linked list sorted as well.", Difficulty::Easy){ }
 
+ListNode *RemoveDuplicatesFromSortedList::Solution(ListNode *head) {
+    if (!head || !head->next) {
+        return nullptr;
+    }
+    ListNode* current = head;
+    while (current) {
+        if (current->next && current->val == current->next->val) {
+            current->next = current->next->next;
+        }
+        current = current->next;
+    }
+    return head;
+}
+
+MergeSortedArray::MergeSortedArray() :Problem(88, "MergeSortedArray", "You are given two integer arrays nums1 and nums2, sorted in non-decreasing order, and two integers m and n, representing the number of elements in nums1 and nums2 respectively.\n
+    "Merge nums1 and nums2 into a single array sorted in non-decreasing order.\n"
+    "The final sorted array should not be returned by the function, but instead be stored inside the array nums1.\n"
+    "To accommodate this, nums1 has a length of m + n, where the first m elements denote the elements that should be merged, and the last n elements are set to 0 and should be ignored. nums2 has a length of n.", Difficulty::Easy){ }
+
+void MergeSortedArray::Solution(vector<int> &nums1, int m, vector<int> &nums2, int n) {
+    int m_ptr = m-1;
+    int n_ptr = n-1;
+    int write_ptr = m + n -1;
+    while (m_ptr >= 0 && n_ptr >= 0) {
+        if (nums1[m_ptr] > nums2[n_ptr]) {
+            nums1[write_ptr] = nums1[m_ptr];
+            m_ptr--;
+        } else {
+            nums1[write_ptr] = nums2[n_ptr];
+            n_ptr--;
+        }
+        write_ptr--;
+    }
+    while (n_ptr >= 0) {
+        nums1[write_ptr] = nums2[n_ptr];
+        n_ptr--;
+        write_ptr--;
+    }
+}
+
+BinaryTreeInorderTraversal::BinaryTreeInorderTraversal() :Problem(94, "BinaryTreeInorderTraversal", "Given the root of a binary tree, return the inorder traversal of its nodes' values.\n", Difficulty::Easy){}
+
+vector<int> BinaryTreeInorderTraversal::Solution(TreeNode *root) {
+    vector<int> values;
+    inOrder(root, values);
+    return values;
+}
+
+void BinaryTreeInorderTraversal::inOrder(TreeNode *root, vector<int> &values) {
+    if (!root) {
+        return;
+    }
+    inOrder(root->left, values);
+    values.push_back(root->val);
+    inOrder(root->right, values);
+}
 
 
 

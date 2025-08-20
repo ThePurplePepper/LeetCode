@@ -25,4 +25,7 @@ void registerAllProblems(ProblemFactory &factory) {
     factory.registerProblem(66, []() { return make_unique<PlusOne>(); });
     factory.registerProblem(67, []() { return make_unique<AddBinary>(); });
     factory.registerProblem(69, []() { return make_unique<SqrtX>(); });
+    factory.registerProblem(83, []() { return make_unique<RemoveDuplicatesFromSortedList>(); });
+    factory.registerProblem(88, []() { return make_unique<MergeSortedArray>(); });
+    factory.registerProblem(94, []() { return make_unique<BinaryTreeInorderTraversal>(); });
 }
