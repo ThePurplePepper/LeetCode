@@ -554,6 +554,26 @@ bool SameTree::Solution(TreeNode *p, TreeNode *q) {
     return p->val == q->val && Solution(p->left, q->left) && Solution(p->right, q->right);
 }
 
+SymmetricTree::SymmetricTree() :Problem(101, "SymmetricTree", "Given the root of a binary tree, check whether it is a mirror of itself (i.e., symmetric around its center).\n", Difficulty::Easy){}
+
+bool SymmetricTree::isMirrored(TreeNode *p, TreeNode *q) {
+    if (p == nullptr && q == nullptr) {
+        return true;
+    }
+    if (p == nullptr || q == nullptr) {
+        return false;
+    }
+    return p->val == q->val && isMirrored(p->right, q->left) && isMirrored(p->left, q->right);
+}
+
+bool SymmetricTree::Solution(TreeNode *root) {
+    if (!root) {
+        return true;
+    }
+    return isMirrored(root->left, root->right);
+}
+
+
 
 
 

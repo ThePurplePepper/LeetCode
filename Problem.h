@@ -142,3 +142,9 @@ class SameTree : public Problem {
     SameTree();
     bool Solution(TreeNode* p, TreeNode* q);
 };
+
+class SymmetricTree : public Problem {
+    SymmetricTree();
+    bool isMirrored(TreeNode* p, TreeNode* q);
+    bool Solution(TreeNode* root);
+};
