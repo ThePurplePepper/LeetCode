@@ -418,7 +418,7 @@ vector<int> PlusOne::anotherSolution(vector<int> &digits) {
     return digits;
 }
 
-AddBinary::AddBinary() : Problem(67,"AddBinary", "Given two binary strings a and b, return their sum as a binary string.\n"
+AddBinary::AddBinary() : Problem(67,"AddBinary", "Given two binary strings a and b, return their sum as a binary string.\n",
     Difficulty::Easy) { }
 
 string AddBinary::Solution(string a, string b) {
