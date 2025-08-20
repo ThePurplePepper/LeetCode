@@ -541,6 +541,18 @@ void BinaryTreeInorderTraversal::inOrder(TreeNode *root, vector<int> &values) {
     inOrder(root->right, values);
 }
 
+SameTree::SameTree() :Problem(100, "SameTree", "Given the roots of two binary trees p and q, write a function to check if they are the same or not.\n"
+                                               "Two binary trees are considered the same if they are structurally identical, and the nodes have the same value.\n", Difficulty::Easy){ }
+
+bool SameTree::Solution(TreeNode *p, TreeNode *q) {
+    if (p == nullptr && q == nullptr) {
+        return true;
+    }
+    if (p == nullptr || q == nullptr) {
+        return false;
+    }
+    return p->val == q->val && Solution(p->left, q->left) && Solution(p->right, q->right);
+}
 
 
 

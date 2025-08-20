@@ -137,3 +137,8 @@ public:
 private:
     void inOrder(TreeNode* root, vector<int>& values);
 };
+
+class SameTree : public Problem {
+    SameTree();
+    bool Solution(TreeNode* p, TreeNode* q);
+};
