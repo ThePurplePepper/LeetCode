@@ -148,3 +148,8 @@ class SymmetricTree : public Problem {
     bool isMirrored(TreeNode* p, TreeNode* q);
     bool Solution(TreeNode* root);
 };
+
+class MaximumDepthOfBinaryTree : public Problem {
+    MaximumDepthOfBinaryTree();
+    int Solution (TreeNode* root);
+};

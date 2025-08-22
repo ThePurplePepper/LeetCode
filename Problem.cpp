@@ -573,6 +573,18 @@ bool SymmetricTree::Solution(TreeNode *root) {
     return isMirrored(root->left, root->right);
 }
 
+MaximumDepthOfBinaryTree::MaximumDepthOfBinaryTree() : Problem(104, "MaximumDepthOfBinaryTree", "Given the root of a binary tree, return its maximum depth.\n", Difficulty::Easy){}
+
+int MaximumDepthOfBinaryTree::Solution(TreeNode *root) {
+    if (!root) {
+        return 0;
+    }
+    int left = Solution(root->left);
+    int right = Solution(root->right);
+    int max = left > right ? left : right;
+    return max + 1;
+}
+
 
 
 
