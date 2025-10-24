@@ -139,17 +139,38 @@ private:
 };
 
 class SameTree : public Problem {
+public:
     SameTree();
     bool Solution(TreeNode* p, TreeNode* q);
 };
 
 class SymmetricTree : public Problem {
+public:
     SymmetricTree();
     bool isMirrored(TreeNode* p, TreeNode* q);
     bool Solution(TreeNode* root);
 };
 
 class MaximumDepthOfBinaryTree : public Problem {
+public:
     MaximumDepthOfBinaryTree();
     int Solution (TreeNode* root);
+};
+
+class AddTwoNumberr : public Problem {
+    public:
+    AddTwoNumberr();
+    ListNode* Solution(ListNode* list1, ListNode* list2);
+};
+
+class RemoveNthNodeFromEndofList : public Problem {
+    public:
+    RemoveNthNodeFromEndofList();
+    ListNode* Solution(ListNode* head, int n);
+};
+
+class SearchinRotatedSortedArray : public Problem {
+    public:
+    SearchinRotatedSortedArray();
+    int Solution(std::vector<int>& nums, int target);
 };

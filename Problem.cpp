@@ -1,6 +1,8 @@
 #include <iostream>
 #include "Problem.h"
+#include "helperFunctions.h"
 
+#include <algorithm>
 #include <cstring>
 #include <limits>
 #include <list>
@@ -428,7 +430,7 @@ string AddBinary::Solution(string a, string b) {
         a = string(b.length() - a.length(), '0') + a;
     }
     int carry = 0;
-    string sum = '';
+    string sum;
     for (int i = a.length() - 1; i >= 0; i--) {
         int a_digit = a[i] - '0';
         int b_digit = b[i] - '0';
@@ -498,7 +500,7 @@ ListNode *RemoveDuplicatesFromSortedList::Solution(ListNode *head) {
     return head;
 }
 
-MergeSortedArray::MergeSortedArray() :Problem(88, "MergeSortedArray", "You are given two integer arrays nums1 and nums2, sorted in non-decreasing order, and two integers m and n, representing the number of elements in nums1 and nums2 respectively.\n
+MergeSortedArray::MergeSortedArray() :Problem(88, "MergeSortedArray", "You are given two integer arrays nums1 and nums2, sorted in non-decreasing order, and two integers m and n, representing the number of elements in nums1 and nums2 respectively.\n"
     "Merge nums1 and nums2 into a single array sorted in non-decreasing order.\n"
     "The final sorted array should not be returned by the function, but instead be stored inside the array nums1.\n"
     "To accommodate this, nums1 has a length of m + n, where the first m elements denote the elements that should be merged, and the last n elements are set to 0 and should be ignored. nums2 has a length of n.", Difficulty::Easy){ }
@@ -585,7 +587,136 @@ int MaximumDepthOfBinaryTree::Solution(TreeNode *root) {
     return max + 1;
 }
 
+AddTwoNumberr::AddTwoNumberr() : Problem(2, "AddTwoNumberr", "You are given two non-empty linked lists representing two non-negative integers.\n"
+                                                             "The digits are stored in reverse order, and each of their nodes contains a single digit.\n"
+                                                             "Add the two numbers and return the sum as a linked list.", Difficulty::Medium) { }
+
+ListNode *AddTwoNumberr::Solution(ListNode *list1, ListNode *list2) {
+
+    /*
+     * Solution in words:
+     * 1. Iterate through both lists together in O(n) timer complexity. OF = 0
+     * 2. Add both currents to a new node, together with OF.
+     * 3. If sum is greater than 9, create a node with ones digit and attach it, and OF++
+     * 4. else, create a node with the sum and attach it, OF = 0;
+     */
+
+    int overflow = 0;
+    ListNode dummy;
+    ListNode* head = &dummy;
+    while (list1 && list2) {
+        ListNode attach;
+        int sum = list1->val + list2->val + overflow;
+        if (sum > 9) {
+            attach.val = sum % 10;
+            overflow = 1;
+        } else {
+            attach.val = sum;
+        }
+        head->next = &attach;
+        list1 = list1->next;
+        list2 = list2->next;
+    }
+    while (list1) {
+        ListNode attach;
+        int sum = overflow + list1->val;
+        if (sum > 9) {
+            attach.val = sum % 10;
+            overflow = 1;
+        } else {
+            attach.val = sum;
+        }
+        head->next = &attach;
+        list1 = list1->next;
+    }
+
+    while (list2) {
+        ListNode attach;
+        int sum = overflow + list2->val;
+        if (sum > 9) {
+            attach.val = sum % 10;
+            overflow = 1;
+        } else {
+            attach.val = sum;
+        }
+        head->next = &attach;
+        list2 = list2->next;
+    }
+
+    if (overflow) {
+        ListNode attach, last;
+        attach.val = 0;
+        last.val = 1;
+        head->next = &attach;
+        head->next->next = &last;
+    }
+
+}
 
 
 
+RemoveNthNodeFromEndofList::RemoveNthNodeFromEndofList() : Problem(19, "RemoveNthNodeFromEndofList", "Given the head of a linked list, remove the nth node from the end of the list and return its head.", Difficulty::Medium){ }
+
+ListNode* RemoveNthNodeFromEndofList::Solution(ListNode *head, int n) {
+    int counter = 0;
+    ListNode* current = head;
+    ListNode* previous = head;
+    while (current) {
+        if (counter == n) {
+            break;
+        }
+        counter++;
+        previous = current;
+        current = current->next;
+    }
+    if (current != nullptr) {
+        previous->next = current->next;
+    }
+    if (counter == 0) {
+        return head->next;
+    }
+    return head;
+}
+
+SearchinRotatedSortedArray::SearchinRotatedSortedArray() : Problem(33, "SearchinRotatedSortedArray", "here is an integer array nums sorted in ascending order (with distinct values).\n"
+"Prior to being passed to your function, nums is possibly left rotated at an unknown index k (1 <= k < nums.length) such that the resulting array is [nums[k], nums[k+1], ..., nums[n-1], nums[0], nums[1], ..., nums[k-1]] (0-indexed).\n"
+"For example, [0,1,2,4,5,6,7] might be left rotated by 3 indices and become [4,5,6,7,0,1,2].\n"
+"Given the array nums after the possible rotation and an integer target, return the index of target if it is in nums, or -1 if it is not in nums.\n"
+"You must write an algorithm with O(log n) runtime complexity.\n", Difficulty::Medium) {}
+
+int SearchinRotatedSortedArray::Solution(vector<int>& nums, int target) {
+
+    /*
+     * 1. Locate the shifted index using Binary Search.
+     * 2. Find Target in the 2 sub-arrays, both are sorted, using Binary Search.
+     */
+
+    int len = nums.size();
+    int left = 0;
+    int right = len - 1;
+    int mid = (len - 1) / 2;
+
+    while (nums[left] > nums[right]) {
+        if (nums [mid] > nums[right]) {
+            left = mid;
+        } else {
+            right = mid;
+        }
+        mid = (right + left) / 2;
+        if (left == mid) {
+            break;
+        }
+    }
+    // Left now holds the index of the shift
+    int firstSearch = binarySearch(nums, target, 0, left);
+    if (firstSearch != -1) {
+        return firstSearch;
+    }
+    int secondSearch = binarySearch(nums, target, left + 1, len - 1);
+    if (secondSearch != -1) {
+        return secondSearch + left + 1;
+    }
+    return -1;
+
+}
 
