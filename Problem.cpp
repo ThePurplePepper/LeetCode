@@ -587,11 +587,11 @@ int MaximumDepthOfBinaryTree::Solution(TreeNode *root) {
     return max + 1;
 }
 
-AddTwoNumberr::AddTwoNumberr() : Problem(2, "AddTwoNumberr", "You are given two non-empty linked lists representing two non-negative integers.\n"
+AddTwoNumber::AddTwoNumber() : Problem(2, "AddTwoNumber", "You are given two non-empty linked lists representing two non-negative integers.\n"
                                                              "The digits are stored in reverse order, and each of their nodes contains a single digit.\n"
                                                              "Add the two numbers and return the sum as a linked list.", Difficulty::Medium) { }
 
-ListNode *AddTwoNumberr::Solution(ListNode *list1, ListNode *list2) {
+ListNode *AddTwoNumber::Solution(ListNode *list1, ListNode *list2) {
 
     /*
      * Solution in words:
@@ -651,6 +651,7 @@ ListNode *AddTwoNumberr::Solution(ListNode *list1, ListNode *list2) {
         head->next->next = &last;
     }
 
+    return head;
 }
 
 

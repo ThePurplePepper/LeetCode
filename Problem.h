@@ -157,9 +157,9 @@ public:
     int Solution (TreeNode* root);
 };
 
-class AddTwoNumberr : public Problem {
+class AddTwoNumber : public Problem {
     public:
-    AddTwoNumberr();
+    AddTwoNumber();
     ListNode* Solution(ListNode* list1, ListNode* list2);
 };
 

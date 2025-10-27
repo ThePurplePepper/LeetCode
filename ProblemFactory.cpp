@@ -31,4 +31,8 @@ void registerAllProblems(ProblemFactory &factory) {
     factory.registerProblem(100, []() { return make_unique<SameTree>(); });
     factory.registerProblem(101, []() { return make_unique<SymmetricTree>(); });
     factory.registerProblem(104, []() { return make_unique<MaximumDepthOfBinaryTree>(); });
+    factory.registerProblem(2, []() { return make_unique<AddTwoNumber>(); });
+    factory.registerProblem(19, []() { return make_unique<RemoveNthNodeFromEndofList>(); });
+    factory.registerProblem(33, []() { return make_unique<SearchinRotatedSortedArray>(); });
+
 }
