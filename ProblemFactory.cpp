@@ -34,5 +34,5 @@ void registerAllProblems(ProblemFactory &factory) {
     factory.registerProblem(2, []() { return make_unique<AddTwoNumber>(); });
     factory.registerProblem(19, []() { return make_unique<RemoveNthNodeFromEndofList>(); });
     factory.registerProblem(33, []() { return make_unique<SearchinRotatedSortedArray>(); });
-
+    factory.registerProblem(169, []() { return make_unique<MajorityElement>(); });
 }

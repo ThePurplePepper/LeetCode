@@ -158,19 +158,31 @@ public:
 };
 
 class AddTwoNumber : public Problem {
-    public:
+public:
     AddTwoNumber();
     ListNode* Solution(ListNode* list1, ListNode* list2);
 };
 
 class RemoveNthNodeFromEndofList : public Problem {
-    public:
+public:
     RemoveNthNodeFromEndofList();
     ListNode* Solution(ListNode* head, int n);
 };
 
 class SearchinRotatedSortedArray : public Problem {
-    public:
+public:
     SearchinRotatedSortedArray();
     int Solution(std::vector<int>& nums, int target);
 };
+
+class MajorityElement : public Problem {
+public:
+    MajorityElement();
+    int Solutiuon(vector<int>& nums);
+};
+
+// class TrappingRainWater : public Problem {
+// public:
+//     TrappingRainWater();
+//     int Solutiuon(vector<int>& height);
+// };

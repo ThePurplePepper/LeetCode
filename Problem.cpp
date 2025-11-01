@@ -591,7 +591,7 @@ AddTwoNumber::AddTwoNumber() : Problem(2, "AddTwoNumber", "You are given two non
                                                              "The digits are stored in reverse order, and each of their nodes contains a single digit.\n"
                                                              "Add the two numbers and return the sum as a linked list.", Difficulty::Medium) { }
 
-ListNode *AddTwoNumber::Solution(ListNode *list1, ListNode *list2) {
+ListNode* AddTwoNumber::Solution(ListNode* list1, ListNode* list2) {
 
     /*
      * Solution in words:
@@ -602,57 +602,26 @@ ListNode *AddTwoNumber::Solution(ListNode *list1, ListNode *list2) {
      */
 
     int overflow = 0;
-    ListNode dummy;
-    ListNode* head = &dummy;
-    while (list1 && list2) {
-        ListNode attach;
-        int sum = list1->val + list2->val + overflow;
-        if (sum > 9) {
-            attach.val = sum % 10;
-            overflow = 1;
-        } else {
-            attach.val = sum;
-        }
-        head->next = &attach;
-        list1 = list1->next;
-        list2 = list2->next;
-    }
-    while (list1) {
-        ListNode attach;
-        int sum = overflow + list1->val;
-        if (sum > 9) {
-            attach.val = sum % 10;
-            overflow = 1;
-        } else {
-            attach.val = sum;
-        }
-        head->next = &attach;
-        list1 = list1->next;
-    }
+    ListNode dummy(0);
+    ListNode* tail = &dummy;
 
-    while (list2) {
-        ListNode attach;
-        int sum = overflow + list2->val;
-        if (sum > 9) {
-            attach.val = sum % 10;
-            overflow = 1;
-        } else {
-            attach.val = sum;
+    while (list1 || list2 || overflow) {
+        int val1 = list1 ? list1->val : 0;
+        int val2 = list2 ? list2->val : 0;
+        int sum = val1 + val2 + overflow;
+        overflow = sum / 10;
+        tail->next = new ListNode(sum % 10);
+        tail = tail->next;
+        if (list1) {
+            list1 = list1->next;
         }
-        head->next = &attach;
-        list2 = list2->next;
+        if (list2) {
+            list2 = list2->next;
+        }
     }
-
-    if (overflow) {
-        ListNode attach, last;
-        attach.val = 0;
-        last.val = 1;
-        head->next = &attach;
-        head->next->next = &last;
-    }
-
-    return head;
+    return dummy.next;
 }
+
 
 
 
@@ -720,4 +689,57 @@ int SearchinRotatedSortedArray::Solution(vector<int>& nums, int target) {
     return -1;
 
 }
+
+MajorityElement::MajorityElement() : Problem(169, "MajorityElement", "Given an array nums of size n, return the majority element.\n"
+
+"The majority element is the element that appears more than ⌊n / 2⌋ times. You may assume that the majority element always exists in the array.\n", Difficulty::Easy){ }
+
+int MajorityElement::Solutiuon(vector<int> &nums) {
+
+    map<int,int> appearances;
+
+    for (int& num : nums) {
+        if (appearances.find(num) == appearances.end()) {
+            appearances[num] = 1;
+        } else {
+            appearances[num]++;
+        }
+    }
+
+    int maxAppearances = appearances[nums[0]];
+    int maxAppeared = nums[0];
+
+    for (auto element : appearances) {
+        if (element.second > maxAppearances) {
+            maxAppearances = element.second;
+            maxAppeared = element.first;
+        }
+    }
+
+    return maxAppeared;
+}
+
+
+// TrappingRainWater::TrappingRainWater() :Problem(42, "TrappingRainWater", "Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it can trap after raining.\n", Difficulty::Hard){}
+//
+// int TrappingRainWater::Solutiuon(vector<int> &height) {
+//     int water = 0;
+//     int i = 0;
+//
+//     while (i < height.size()) {
+//         if (height[i]) {
+//             int j = i;
+//             int batch = 0;
+//             while (j < height.size() && height[j] <= height[i]) {
+//                 batch += height[i] - height[j];
+//                 j++;
+//             }
+//             if (j < height.size()) {
+//                 water += batch;
+//             }
+//         }
+//         i++;
+//     }
+//     return water;
+// }
 
